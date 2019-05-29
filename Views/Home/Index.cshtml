@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<button class="loginBtn loginBtn--facebook" onclick="location.href='@Url.Action("Facebook", "Home")'">
+        Login with Facebook
+    </button>*@
+<head>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+
+<script>
+
+         @*window.location.href = '@Url.Action("Facebook", "Home")/';*@
+
+    var now = new Date();
+    var nowT = now.getDay();
+    var nowD = now.getDate();
+    //document.write(nowD +" " + nowT);
+
+   // var value_or_null = (document.cookie.match(/^(?:.*;)?\s*email\s*=\s*([^;]+)(?:.*)?$/) || [, null])[1]
+    //document.write(value_or_null);
+
+</script>
+
+
+
+@*<select class="form-control" id="category" width="100" contenteditable="false">
+        <option selected>go to a neighborhood</option>
+        <option>work</option>
+        <option>school</option>
+        <option>friends</option>
+        <option>other</option>
+    </select>*@
+
+
+<div class="jumbotron">
+
+    <h1>neighborly</h1>
+
+    <p class="lead">Pick up stuff for your neighbors while you're at the store.</p>
+</div>
+
+
+<br />
+
+<p><a href="~/Home/NeedSomething" class="btn btn-primary"> i need something from the store</a></p>
+
+
+<br />
+
+<p><a class="btn btn-primary" href="~/Home/ImGoingToTheStore">i'm going to the store</a></p>
+
+
+

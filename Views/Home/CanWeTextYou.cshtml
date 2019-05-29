@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "CanITextYou";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+@*<h2>account set up, almost there...</h2>*@
+<h4>let's finish setting things up, what's your phone number?</h4>
+
+
+<p></p>
+<input type="text" class="form-control" placeholder="phone number with area code..." id="number">
+<br />
+
+<button ref="#" type="submit" class="btn btn-primary" id="create">submit</button>
+<br />
+<br />
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+    $("#number").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+        var curchr = this.value.length;
+        var curval = $(this).val();
+        if (curchr == 3) {
+            $(this).val("("+curval + ")");
+        } else if (curchr == 8) {
+            $(this).val(curval + "-");
+        }
+        $(this).attr('maxlength', '13');
+    });
+
+
+    $(document).ready(function () {
+
+        //function will be called on button click having id create
+        $("#create").click(function () {
+
+            var desiredPhone = $("#number").val().replace(/[^\w\s]/gi, '')
+
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "CanWeTextYou", // Controller/View
+                        data: { //Passing data
+
+                            phone: desiredPhone,
+                        }
+
+                        , success: function ()
+                        {
+                            window.location.href = "/"
+                            var sendT = sendTextJS();
+                        }
+
+                    });
+
+         
+        function sendTextJS() {
+            $.ajax({
+                url: '/Home/SendTextSignUp',               
+            }).done(function () {
+               
+            });
+        }
+
+
+    
+          
+          
+        });
+
+    });
+
+</script>

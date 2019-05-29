@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "JoinANeighborhood";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+@*<h2>account set up, almost there...</h2>*@
+<h4>join a neighborhood, what's the code?</h4>
+
+
+<p></p>
+<input type="text" class="form-control" placeholder="secret code here..." id="secretCode">
+<br />
+
+<button ref="#" type="submit" class="btn btn-primary" id="join">join</button>
+<br />
+<br />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function ()
+    {
+        
+        $("#join").click(function () {
+
+            var nCode = $("#secretCode").val()
+                  
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "JoinANeighborhood", // Controller/View
+                    data:
+                    { //Passing data
+                        NeighborhoodCode: nCode,                     
+                    }
+                    //, success: function ()
+                    //{
+                    //    window.location.href = "/"
+                        
+                    //}
+
+
+                });
+        });
+    });
+
+    document.getElementById("join").onclick = function ()
+    {
+        //disable
+        this.disabled = true;
+       // window.alert('welcome to the neighborhood!');
+      //  window.location.href = "/"
+
+    }
+    
+
+
+</script>

@@ -1,0 +1,56 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "GoingToTheStore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model System.Data.DataTable
+@using System.Data;
+
+<h2>what my neighbors need</h2>
+
+
+<table class="table table-hover" style="max-width:100px">
+    <thead>
+        <tr>
+            @foreach (DataColumn col in Model.Columns)
+            {
+                <th scope="col"> @col.ColumnName</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+
+            <tr class="table-primary" id="source-button" style="max-width:100px">
+
+                @foreach (DataColumn col in Model.Columns)
+                {
+                    <td>@row[col.ColumnName]</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    //function called on table row click
+    $('.table > tbody > tr').click(function () {
+        alert('you clicked' + ($(this).index() + 1));
+
+   //  $.post("/Home/SendText");
+
+
+    });
+
+        @*@{
+    ((Neighborly.Controllers.HomeController)this.ViewContext.Controller).SendText();
+}*@
+
+
+</script>

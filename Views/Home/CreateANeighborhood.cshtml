@@ -1,0 +1,69 @@
+﻿
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>create a neighborhood</h2>
+<p></p>
+<h6>Create a neighborhood, we will text you a code. Give the code to your friends so they can join</h6>
+<p></p>
+<h4 id="progress-basic">neighborhood name</h4>
+<p></p>
+<input type="text" class="form-control" placeholder="..." id="NeighborhoodName">
+<p></p>
+<h4 id="progress-basic">category</h4>
+<p></p>
+<select class="form-control" id="category">
+    <option>home</option>
+    <option>work</option>
+    <option>school</option>
+    <option>friends</option>
+    <option>other</option>
+</select>
+<br/>
+<button ref="#" type="submit" class="btn btn-primary" id="create">Create</button>
+<br/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function ()
+    {
+        //function will be called on button click having id btnsave
+        $("#create").click(function () {
+
+            $("#create").disabled = true;
+           
+           var code = Math.floor(Math.random() * 90000) + 10000;
+          //  var code = 5;
+            
+            $.ajax(
+                {
+                              
+                    type: "POST", //HTTP POST Method
+                    url: "CreateANeighborhood", // Controller/View
+                    data: { //Passing data
+
+                        NeighborhoodName: $("#NeighborhoodName").val(),                                              
+                        NeighborhoodCode: code,
+                        NeighborhoodCategory: $("#category").val(),
+                        CreateDate: $("#CreateDate").val(),
+                    }
+                    , success: function ()
+                    {
+                        alert('you have created a neighborhood! we are texting you the code now');
+                        window.location.href = "/"                       
+                    }
+                });            
+        });
+    });
+
+    document.getElementById("create").onclick = function ()
+    {
+        //disable
+        this.disabled = true;
+    }
+
+
+</script>

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "GoToANeighborhood";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+@using Neighborly.Models
+@model  NavigationViewModel
+@using System.Data;
+
+<h2>choose your active neighborhood</h2>
+
+
+<select class="form-control" id="neighDrop" @*onchange="jsFunction(this.value);*@ >
+    @foreach (Neighborhood neigh in Model.Neighborhoods)
+    {
+        <option class="nav-item" aria-expanded="false" data-toggle="dropdown">
+            @neigh.NeighborhoodName
+        </option>
+
+    }
+
+</select>
+<br />  
+<button ref="#" type="submit" class="btn btn-primary" id="goto">submit</button>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        //function will be called on button click having id create
+        $("#goto").click(function () {
+
+            var neighValue = $("#neighDrop").val()
+
+            $.ajax(
+                {
+
+                    type: "POST", //HTTP POST Method
+                    url: "GoToANeighborhood", // Controller/View
+                    data: { //Passing data               
+                        NeighborhoodName: neighValue,
+                    }
+                    , success: function () {
+                        window.location.href = "/"
+                    }
+                   
+                });    
+
+        });
+
+    });
+
+
+    //function jsFunction(value)
+    //{
+    //    $.ajax(
+    //        {
+
+    //            type: "POST", //HTTP POST Method
+    //            url: "GoToANeighborhood", // Controller/View
+    //            data: { //Passing data               
+    //                NeighborhoodCode: value,
+    //            }
+    //            , success: function () {
+    //                window.location.href = "/"                
+    //            }
+    //            //, success: function () { alert('you have created a neighborhood! we are texting you the code now'); }
+    //        });    
+    //}
+
+  
+
+</script>

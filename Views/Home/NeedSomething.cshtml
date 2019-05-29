@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>What would you like?</h2>
+<p></p>
+<p></p>
+<h6>Input something you want to get from the store soon. Then if your neighbors are at the store, they can pick it up for you.</h6>
+<p></p>
+<p></p>
+<h4 id="progress-basic">your name</h4>
+<p></p>
+<input type="text" class="form-control" placeholder="put your name here..." id="txtName">
+<p></p>
+<h4 id="progress-basic">category</h4>
+<p></p>
+<select class="form-control" id="txtCategory">
+    <option>a quick bight to eat</option>
+    <option>beer</option>
+    <option>grocery item</option>
+    <option>household goods</option>
+    <option>electronics</option>
+    <option>medicine</option>
+    <option>other</option>
+</select>
+<p></p>
+<h4 id="progress-basic">description</h4>
+<p></p>
+<input type="text" class="form-control" placeholder="put your description here..." id="txtDescription">
+<p></p>
+<h4 id="progress-basic">request expiration in hours</h4>
+<p></p>
+<select class="form-control" id="txtExpiration">
+    <option>1 hour</option>
+    <option>2 hours</option>
+    <option>3 hours</option>
+    <option>4 hours</option>
+    <option>6 hours</option>
+    <option>8 hours</option>
+    <option>12 hours</option>
+    <option>24 hours</option>
+    <option>48 hours</option>
+    <option>72 hours</option>
+</select>
+<p></p>
+<br />
+<button ref="#" type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+<br />
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        //function will be called on button click having id btnsave
+        $("#btnSave").click(function () {
+            //  alert('Hello, world!');
+            $.ajax(
+                {
+
+                    type: "POST", //HTTP POST Method
+                    url: "NeedSomething", // Controller/View
+                    data: { //Passing data
+
+
+
+                        Name: $("#txtName").val(),
+                        Category: $("#txtCategory").val(), //Reading text box values using Jquery
+                        Description: $("#txtDescription").val(),
+                        Expiration: $("#txtExpiration").val(),
+
+                    }
+                    , success: function () { alert('request submitted. thank you!'); }
+                });
+
+
+        });
+    });
+
+</script>
