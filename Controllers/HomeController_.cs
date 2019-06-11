@@ -474,7 +474,7 @@ namespace Neighborly.Controllers
 
         private string getConnString()
         {
-            string connString = "Server = tcp:jadsolutions.database.windows.net,1433; Initial Catalog = Clients; Persist Security Info = False; User ID = xxxx; Password = xxxx; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = True; Connection Timeout = 30";
+            string connString = "Server = tcp:xxxx.database.windows.net,1433; Initial Catalog = Clients; Persist Security Info = False; User ID = xxxx; Password = xxxx; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = True; Connection Timeout = 30";
             return connString;
         }
 
